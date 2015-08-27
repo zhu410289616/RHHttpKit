@@ -1,0 +1,8 @@
+platform:ios,'7.0'
+source 'https://github.com/CocoaPods/Specs.git'
+
+pod 'libextobjc/EXTScope', '~> 0.4.1'
+pod 'RHCategoryKit', '~> 1.0.2'
+pod 'AFNetworking', '~> 2.5.4'
+pod 'EGOCache', '~> 2.1.3'
+
