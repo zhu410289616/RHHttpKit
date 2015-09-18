@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.author       = { "zhu410289616" => "zhu410289616@163.com" }
   s.source       = { :git => "https://github.com/zhu410289616/RHHttpKit.git", :tag => s.version.to_s }
 
-  s.platform     = :ios, "7.0"
+  s.platform     = :ios, "6.0"
   s.source_files  = "RHHttpKit/*.{h,m}"
 
   s.requires_arc = true
