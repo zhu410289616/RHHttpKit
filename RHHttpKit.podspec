@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "RHHttpKit"
-  s.version      = "1.0.3"
+  s.version      = "1.0.5"
   s.summary      = "A Http Kit based on AFNetworking."
   s.homepage     = "https://github.com/zhu410289616/RHHttpKit"
   s.license      = { :type => "MIT", :file => "LICENSE" }
