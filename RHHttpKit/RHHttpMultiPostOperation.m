@@ -10,10 +10,17 @@
 
 @implementation RHHttpMultiPostOperation
 
+- (NSDictionary *)httpMultipartFormDataParameters
+{
+    return _multipartFormDataParameters;
+}
+
 - (void)execute
 {
-    NSAssert(self.urlString.length > 0, @"urlString is nil ...");
-    [self doHttpMultiPostWithUrl:self.urlString parameters:self.parameters multipartFormDataParams:self.multipartFormDataParameters];
+    NSString *url = [self httpURL];
+    NSDictionary *params = [self httpParameters];
+    NSDictionary *multiParams = [self httpMultipartFormDataParameters];
+    [self doHttpMultiPostWithUrl:url parameters:params multipartFormDataParams:multiParams];
 }
 
 - (void)doHttpMultiPostWithUrl:(NSString *)URLString parameters:(NSDictionary *)parameters multipartFormDataParams:(NSDictionary *)multipartFormDataParams

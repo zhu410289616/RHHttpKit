@@ -24,6 +24,9 @@ typedef void(^RHHttpFailureBlock)(id request, NSError *error);
 @property (nonatomic, strong) AFHTTPRequestSerializer *requestSerializer;
 @property (nonatomic, strong) AFHTTPResponseSerializer *responseSerializer;
 
+- (NSString *)httpURL;
+- (NSDictionary *)httpParameters;
+
 - (void)execute;
 
 - (void)requestSuccess:(id)request response:(id)response;

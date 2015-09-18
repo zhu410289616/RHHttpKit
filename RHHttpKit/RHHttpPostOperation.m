@@ -12,8 +12,9 @@
 
 - (void)execute
 {
-    NSAssert(self.urlString.length > 0, @"urlString is nil ...");
-    [self doHttpPostWithUrl:self.urlString parameters:self.parameters];
+    NSString *url = [self httpURL];
+    NSDictionary *params = [self httpParameters];
+    [self doHttpPostWithUrl:url parameters:params];
 }
 
 - (void)doHttpPostWithUrl:(NSString *)URLString parameters:(NSDictionary *)parameters

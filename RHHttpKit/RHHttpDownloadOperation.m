@@ -51,8 +51,9 @@
 
 - (void)execute
 {
-    NSAssert(self.urlString.length > 0, @"urlString is nil ...");
-    [self doHttpDownloadWithUrl:self.urlString parameters:self.parameters];
+    NSString *url = [self httpURL];
+    NSDictionary *params = [self httpParameters];
+    [self doHttpDownloadWithUrl:url parameters:params];
 }
 
 - (void)requestDownload:(id)request progress:(NSDictionary *)progress

@@ -25,10 +25,22 @@
     RHHttpLog(@"[%@] dealloc...", [self class]);
 }
 
-- (void)execute
+- (NSString *)httpURL
 {
     NSAssert(self.urlString.length > 0, @"urlString is nil ...");
-    [self doHttpGetWithUrl:self.urlString parameters:self.parameters];
+    return _urlString;
+}
+
+- (NSDictionary *)httpParameters
+{
+    return _parameters;
+}
+
+- (void)execute
+{
+    NSString *url = [self httpURL];
+    NSDictionary *params = [self httpParameters];
+    [self doHttpGetWithUrl:url parameters:params];
 }
 
 - (void)doHttpGetWithUrl:(NSString *)URLString parameters:(NSDictionary *)parameters

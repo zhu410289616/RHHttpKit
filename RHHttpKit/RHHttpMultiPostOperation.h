@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) NSDictionary *multipartFormDataParameters;
 
+- (NSDictionary *)httpMultipartFormDataParameters;
+
 @end
