@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "RHHttpTest.h"
+#import "RHHttpGetOperation.h"
 
 @interface ViewController ()
 
@@ -21,16 +21,17 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    RHHttpTest *test = [[RHHttpTest alloc] init];
-    test.url = @"http://mobile.ximalaya.com/mobile/others/ca/album/track/280961/true/1/30?device=iPhone";
-    [test setSuccessBlock:^(id<RHHttpProtocol> request, id response) {
-        NSString *result = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+    //
+    RHHttpGetOperation *get = [[RHHttpGetOperation alloc] init];
+    get.urlString = @"http://mobile.ximalaya.com/mobile/others/ca/album/track/280961/true/1/30?device=iPhone";
+    [get setSuccessBlock:^(id request, id response) {
+        NSString *result = response;
         RHHttpLog(@"setSuccessBlock: %@", result);
     }];
-    [test setFailureBlock:^(id<RHHttpProtocol> request, NSError *error) {
+    [get setFailureBlock:^(id request, NSError *error) {
         RHHttpLog(@"setFailureBlock: %@", error);
     }];
-    [test start];
+    [get start];
     
 }
 

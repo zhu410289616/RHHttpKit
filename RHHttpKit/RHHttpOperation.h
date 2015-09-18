@@ -7,14 +7,26 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RHHttpProtocol.h"
+#import "AFNetworking.h"
+#import "RHHttpLogKit.h"
 
-typedef void(^RHHttpSuccessBlock)(id<RHHttpProtocol> request, id response);
-typedef void(^RHHttpFailureBlock)(id<RHHttpProtocol> request, NSError *error);
+typedef void(^RHHttpSuccessBlock)(id request, id response);
+typedef void(^RHHttpFailureBlock)(id request, NSError *error);
 
-@interface RHHttpOperation : NSOperation <RHHttpProtocol>
+@interface RHHttpOperation : NSOperation
 
 @property (nonatomic, copy) RHHttpSuccessBlock successBlock;
 @property (nonatomic, copy) RHHttpFailureBlock failureBlock;
+
+@property (nonatomic, copy) NSString *urlString;
+@property (nonatomic, strong) NSDictionary *parameters;
+
+@property (nonatomic, strong) AFHTTPRequestSerializer *requestSerializer;
+@property (nonatomic, strong) AFHTTPResponseSerializer *responseSerializer;
+
+- (void)execute;
+
+- (void)requestSuccess:(id)request response:(id)response;
+- (void)requestFailure:(id)request error:(NSError *)error;
 
 @end

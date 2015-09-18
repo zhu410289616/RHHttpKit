@@ -10,22 +10,10 @@
 
 @implementation RHHttpMultiPostOperation
 
-- (NSDictionary *)httpMultipartFormDataParameters
-{
-    return nil;
-}
-
-- (RHHttpMethodType)httpMethod
-{
-    return RHHttpMethodTypeMultiPost;
-}
-
 - (void)execute
 {
-    NSString *url = [self httpURL];
-    NSDictionary *params = [self httpParameters];
-    NSDictionary *multipartFormDataParams = [self httpMultipartFormDataParameters];
-    [self doHttpMultiPostWithUrl:url parameters:params multipartFormDataParams:multipartFormDataParams];
+    NSAssert(self.urlString.length > 0, @"urlString is nil ...");
+    [self doHttpMultiPostWithUrl:self.urlString parameters:self.parameters multipartFormDataParams:self.multipartFormDataParameters];
 }
 
 - (void)doHttpMultiPostWithUrl:(NSString *)URLString parameters:(NSDictionary *)parameters multipartFormDataParams:(NSDictionary *)multipartFormDataParams
@@ -34,12 +22,12 @@
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    if ([self respondsToSelector:@selector(httpRequestSerializer)]) {
-        manager.requestSerializer = [self httpRequestSerializer];
-    }
-    if ([self respondsToSelector:@selector(httpResponseSerializer)]) {
-        manager.responseSerializer = [self httpResponseSerializer];
-    }
+    if (self.requestSerializer) {
+        manager.requestSerializer = self.requestSerializer;
+    }//if
+    if (self.responseSerializer) {
+        manager.responseSerializer = self.responseSerializer;
+    }//if
     
     [manager POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         NSArray *multipartParamKeys = [multipartFormDataParams allKeys];

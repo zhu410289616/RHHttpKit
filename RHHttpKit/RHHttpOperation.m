@@ -10,44 +10,25 @@
 
 @implementation RHHttpOperation
 
+- (instancetype)init
+{
+    if (self = [super init]) {
+        _requestSerializer = [AFHTTPRequestSerializer serializer];
+        _responseSerializer = [AFHTTPResponseSerializer serializer];
+        _responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", @"text/plain", nil];
+    }
+    return self;
+}
+
 - (void)dealloc
 {
     RHHttpLog(@"[%@] dealloc...", [self class]);
 }
 
-- (NSString *)httpURL
-{
-    return DEFAULT_HTTP_URL;
-}
-
-- (NSDictionary *)httpParameters
-{
-    return nil;
-}
-
-- (RHHttpMethodType)httpMethod
-{
-    return RHHttpMethodTypeGet;
-}
-
-- (AFHTTPRequestSerializer *)httpRequestSerializer
-{
-    AFHTTPRequestSerializer *serializer = [AFHTTPRequestSerializer serializer];
-    return serializer;
-}
-
-- (AFHTTPResponseSerializer *)httpResponseSerializer
-{
-    AFHTTPResponseSerializer *serializer = [AFJSONResponseSerializer serializer];
-    serializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", @"text/plain", nil];
-    return serializer;
-}
-
 - (void)execute
 {
-    NSString *url = [self httpURL];
-    NSDictionary *params = [self httpParameters];
-    [self doHttpGetWithUrl:url parameters:params];
+    NSAssert(self.urlString.length > 0, @"urlString is nil ...");
+    [self doHttpGetWithUrl:self.urlString parameters:self.parameters];
 }
 
 - (void)doHttpGetWithUrl:(NSString *)URLString parameters:(NSDictionary *)parameters
@@ -56,12 +37,12 @@
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    if ([self respondsToSelector:@selector(httpRequestSerializer)]) {
-        manager.requestSerializer = [self httpRequestSerializer];
-    }
-    if ([self respondsToSelector:@selector(httpResponseSerializer)]) {
-        manager.responseSerializer = [self httpResponseSerializer];
-    }
+    if (_requestSerializer) {
+        manager.requestSerializer = _requestSerializer;
+    }//if
+    if (_responseSerializer) {
+        manager.responseSerializer = _responseSerializer;
+    }//if
     
     [manager GET:URLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self requestSuccess:self response:responseObject];
@@ -70,7 +51,7 @@
     }];
 }
 
-- (void)requestSuccess:(id<RHHttpProtocol>)request response:(id)response
+- (void)requestSuccess:(id)request response:(id)response
 {
     RHHttpLog(@"[%@] requestSuccess: %@", [self class], response);
     if (_successBlock) {
@@ -78,7 +59,7 @@
     }
 }
 
-- (void)requestFailure:(id<RHHttpProtocol>)request error:(NSError *)error
+- (void)requestFailure:(id)request error:(NSError *)error
 {
     RHHttpLog(@"[%@] requestFailure: %@", [self class], error);
     if (_failureBlock) {
@@ -88,15 +69,7 @@
 
 - (void)main
 {
-    if ([self respondsToSelector:@selector(willExecute)]) {
-        [self willExecute];
-    }
-    
     [self execute];
-    
-    if ([self respondsToSelector:@selector(didExecute)]) {
-        [self didExecute];
-    }
 }
 
 @end

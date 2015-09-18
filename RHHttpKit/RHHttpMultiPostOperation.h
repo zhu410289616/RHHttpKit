@@ -10,4 +10,6 @@
 
 @interface RHHttpMultiPostOperation : RHHttpOperation
 
+@property (nonatomic, strong) NSDictionary *multipartFormDataParameters;
+
 @end

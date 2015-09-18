@@ -13,6 +13,7 @@
 @interface RHHttpCacheOperation ()
 {
     NSString *_cacheKey;
+    id _result;
 }
 
 @end
@@ -30,23 +31,13 @@
 
 - (void)willExecute
 {
-    if ([self shouldReadCacheForResponse]) {
+    if (_shouldCache) {
         NSString *key = [self keyForCache];
         if ([[EGOCache globalCache] hasCacheForKey:key]) {
             NSData *data = [[EGOCache globalCache] dataForKey:key];
             [self requestCache:self response:data];
         }
     }
-}
-
-- (BOOL)shouldWriteResponseToCache
-{
-    return _shouldCache;
-}
-
-- (BOOL)shouldReadCacheForResponse
-{
-    return _shouldCache;
 }
 
 - (NSString *)keyForCache
@@ -57,10 +48,10 @@
     
     NSMutableString *keyMutableString = [[NSMutableString alloc] init];
     
-    [keyMutableString appendString:[self httpURL]];
+    [keyMutableString appendString:self.urlString];
     
-    if ([self respondsToSelector:@selector(httpParameters)]) {
-        NSDictionary *params = [self httpParameters];
+    if (self.parameters.allKeys.count > 0) {
+        NSDictionary *params = self.parameters;
         NSArray *allKeys = [params allKeys];
         NSArray *sortedAllKeys = [allKeys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             return [obj1 compare:obj2];
@@ -74,7 +65,7 @@
     return _cacheKey;
 }
 
-- (void)requestCache:(id<RHHttpProtocol>)request response:(id)response
+- (void)requestCache:(id)request response:(id)response
 {
     RHHttpLog(@"[%@] requestCache: %@", [self class], response);
     if (_cacheBlock) {
@@ -82,17 +73,31 @@
     }
 }
 
-- (void)requestSuccess:(id<RHHttpProtocol>)request response:(id)response
+- (void)requestSuccess:(id)request response:(id)response
 {
     [super requestSuccess:request response:response];
-    if ([self shouldWriteResponseToCache]) {
-        NSString *key = [self keyForCache];
-        if ([response isKindOfClass:[NSData class]]) {
-            [[EGOCache globalCache] setData:response forKey:key withTimeoutInterval:_cacheTimeout];
-        } else if ([response isKindOfClass:[NSString class]]) {
-            [[EGOCache globalCache] setString:response forKey:key withTimeoutInterval:_cacheTimeout];
-        }
+    if (_shouldCache) {
+        _result = response;
     }
+}
+
+- (void)didExecute
+{
+    if (_shouldCache && _result) {
+        NSString *key = [self keyForCache];
+        if ([_result isKindOfClass:[NSData class]]) {
+            [[EGOCache globalCache] setData:_result forKey:key withTimeoutInterval:_cacheTimeout];
+        } else if ([_result isKindOfClass:[NSString class]]) {
+            [[EGOCache globalCache] setString:_result forKey:key withTimeoutInterval:_cacheTimeout];
+        }//
+    }//if
+}
+
+- (void)main
+{
+    [self willExecute];
+    [self execute];
+    [self didExecute];
 }
 
 @end

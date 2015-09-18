@@ -10,16 +10,10 @@
 
 @implementation RHHttpPostOperation
 
-- (RHHttpMethodType)httpMethod
-{
-    return RHHttpMethodTypePost;
-}
-
 - (void)execute
 {
-    NSString *url = [self httpURL];
-    NSDictionary *params = [self httpParameters];
-    [self doHttpPostWithUrl:url parameters:params];
+    NSAssert(self.urlString.length > 0, @"urlString is nil ...");
+    [self doHttpPostWithUrl:self.urlString parameters:self.parameters];
 }
 
 - (void)doHttpPostWithUrl:(NSString *)URLString parameters:(NSDictionary *)parameters
@@ -28,12 +22,12 @@
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    if ([self respondsToSelector:@selector(httpRequestSerializer)]) {
-        manager.requestSerializer = [self httpRequestSerializer];
-    }
-    if ([self respondsToSelector:@selector(httpResponseSerializer)]) {
-        manager.responseSerializer = [self httpResponseSerializer];
-    }
+    if (self.requestSerializer) {
+        manager.requestSerializer = self.requestSerializer;
+    }//if
+    if (self.responseSerializer) {
+        manager.responseSerializer = self.responseSerializer;
+    }//if
     
     [manager POST:URLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self requestSuccess:self response:responseObject];

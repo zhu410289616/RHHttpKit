@@ -23,11 +23,6 @@
 
 @implementation RHHttpDownloadOperation
 
-- (RHHttpMethodType)httpMethod
-{
-    return RHHttpMethodTypeDownload;
-}
-
 - (NSString *)pathForCache
 {
     if (_cachePath.length > 0) {
@@ -56,12 +51,11 @@
 
 - (void)execute
 {
-    NSString *url = [self httpURL];
-    NSDictionary *params = [self httpParameters];
-    [self doHttpDownloadWithUrl:url parameters:params];
+    NSAssert(self.urlString.length > 0, @"urlString is nil ...");
+    [self doHttpDownloadWithUrl:self.urlString parameters:self.parameters];
 }
 
-- (void)requestDownload:(id<RHHttpProtocol>)request progress:(NSDictionary *)progress
+- (void)requestDownload:(id)request progress:(NSDictionary *)progress
 {
     RHHttpLog(@"[%@] requestDownload: %@", [self class], progress);
     if (_progressBlock) {
@@ -73,7 +67,7 @@
 {
     RHHttpLog(@"[%@] http url: %@, params: %@", [self class], URLString, parameters);
     
-    NSURL *url = [NSURL URLWithString:[self httpURL]];
+    NSURL *url = [NSURL URLWithString:URLString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setValue:_range forHTTPHeaderField:@"Range"];
     

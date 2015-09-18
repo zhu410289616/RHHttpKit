@@ -8,7 +8,7 @@
 
 #import "RHHttpCacheOperation.h"
 
-typedef void(^RHHttpProgressBlock)(id<RHHttpProtocol> request, NSDictionary *progress);
+typedef void(^RHHttpProgressBlock)(id request, NSDictionary *progress);
 
 @interface RHHttpDownloadOperation : RHHttpCacheOperation
 

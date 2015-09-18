@@ -10,9 +10,4 @@
 
 @implementation RHHttpUploadOperation
 
-- (RHHttpMethodType)httpMethod
-{
-    return RHHttpMethodTypeUpload;
-}
-
 @end

@@ -15,13 +15,13 @@
 		8302E0C71B8EEB9F00F86F4D /* RHHttpOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8302E0BD1B8EEB9F00F86F4D /* RHHttpOperation.m */; };
 		8302E0C81B8EEB9F00F86F4D /* RHHttpPostOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8302E0BF1B8EEB9F00F86F4D /* RHHttpPostOperation.m */; };
 		8302E0C91B8EEB9F00F86F4D /* RHHttpUploadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8302E0C21B8EEB9F00F86F4D /* RHHttpUploadOperation.m */; };
+		837D36D61BABE89D00B6EB82 /* RHHttpLogKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 837D36D51BABE89D00B6EB82 /* RHHttpLogKit.m */; settings = {ASSET_TAGS = (); }; };
 		83F558BB1B87288000A761EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F558BA1B87288000A761EA /* main.m */; };
 		83F558BE1B87288000A761EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F558BD1B87288000A761EA /* AppDelegate.m */; };
 		83F558C11B87288000A761EA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F558C01B87288000A761EA /* ViewController.m */; };
 		83F558C61B87288000A761EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83F558C51B87288000A761EA /* Images.xcassets */; };
 		83F558C91B87288000A761EA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83F558C71B87288000A761EA /* LaunchScreen.xib */; };
 		83F558D51B87288000A761EA /* RHHttpDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F558D41B87288000A761EA /* RHHttpDemoTests.m */; };
-		83F558F81B87291E00A761EA /* RHHttpTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F558F71B87291E00A761EA /* RHHttpTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +38,6 @@
 		3C3D50738365C75D00FF1E76 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8302E0B31B8EEB9F00F86F4D /* RHHttpCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RHHttpCacheOperation.h; sourceTree = "<group>"; };
 		8302E0B41B8EEB9F00F86F4D /* RHHttpCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RHHttpCacheOperation.m; sourceTree = "<group>"; };
-		8302E0B51B8EEB9F00F86F4D /* RHHttpConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RHHttpConfig.h; sourceTree = "<group>"; };
 		8302E0B61B8EEB9F00F86F4D /* RHHttpDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RHHttpDownloadOperation.h; sourceTree = "<group>"; };
 		8302E0B71B8EEB9F00F86F4D /* RHHttpDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RHHttpDownloadOperation.m; sourceTree = "<group>"; };
 		8302E0B81B8EEB9F00F86F4D /* RHHttpGetOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RHHttpGetOperation.h; sourceTree = "<group>"; };
@@ -49,9 +48,10 @@
 		8302E0BD1B8EEB9F00F86F4D /* RHHttpOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RHHttpOperation.m; sourceTree = "<group>"; };
 		8302E0BE1B8EEB9F00F86F4D /* RHHttpPostOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RHHttpPostOperation.h; sourceTree = "<group>"; };
 		8302E0BF1B8EEB9F00F86F4D /* RHHttpPostOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RHHttpPostOperation.m; sourceTree = "<group>"; };
-		8302E0C01B8EEB9F00F86F4D /* RHHttpProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RHHttpProtocol.h; sourceTree = "<group>"; };
 		8302E0C11B8EEB9F00F86F4D /* RHHttpUploadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RHHttpUploadOperation.h; sourceTree = "<group>"; };
 		8302E0C21B8EEB9F00F86F4D /* RHHttpUploadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RHHttpUploadOperation.m; sourceTree = "<group>"; };
+		837D36D41BABE89D00B6EB82 /* RHHttpLogKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RHHttpLogKit.h; sourceTree = "<group>"; };
+		837D36D51BABE89D00B6EB82 /* RHHttpLogKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RHHttpLogKit.m; sourceTree = "<group>"; };
 		83F558B51B87288000A761EA /* RHHttpDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RHHttpDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F558B91B87288000A761EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83F558BA1B87288000A761EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -64,8 +64,6 @@
 		83F558CE1B87288000A761EA /* RHHttpDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RHHttpDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F558D31B87288000A761EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83F558D41B87288000A761EA /* RHHttpDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RHHttpDemoTests.m; sourceTree = "<group>"; };
-		83F558F61B87291E00A761EA /* RHHttpTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RHHttpTest.h; sourceTree = "<group>"; };
-		83F558F71B87291E00A761EA /* RHHttpTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RHHttpTest.m; sourceTree = "<group>"; };
 		D3DA9D6F3D9A7298A4EFD657 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D907CF7E3A16EDE93056966E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,7 +100,6 @@
 			children = (
 				8302E0B31B8EEB9F00F86F4D /* RHHttpCacheOperation.h */,
 				8302E0B41B8EEB9F00F86F4D /* RHHttpCacheOperation.m */,
-				8302E0B51B8EEB9F00F86F4D /* RHHttpConfig.h */,
 				8302E0B61B8EEB9F00F86F4D /* RHHttpDownloadOperation.h */,
 				8302E0B71B8EEB9F00F86F4D /* RHHttpDownloadOperation.m */,
 				8302E0B81B8EEB9F00F86F4D /* RHHttpGetOperation.h */,
@@ -113,9 +110,10 @@
 				8302E0BD1B8EEB9F00F86F4D /* RHHttpOperation.m */,
 				8302E0BE1B8EEB9F00F86F4D /* RHHttpPostOperation.h */,
 				8302E0BF1B8EEB9F00F86F4D /* RHHttpPostOperation.m */,
-				8302E0C01B8EEB9F00F86F4D /* RHHttpProtocol.h */,
 				8302E0C11B8EEB9F00F86F4D /* RHHttpUploadOperation.h */,
 				8302E0C21B8EEB9F00F86F4D /* RHHttpUploadOperation.m */,
+				837D36D41BABE89D00B6EB82 /* RHHttpLogKit.h */,
+				837D36D51BABE89D00B6EB82 /* RHHttpLogKit.m */,
 			);
 			name = RHHttpKit;
 			path = ../../RHHttpKit;
@@ -152,8 +150,6 @@
 				83F558C51B87288000A761EA /* Images.xcassets */,
 				83F558C71B87288000A761EA /* LaunchScreen.xib */,
 				83F558B81B87288000A761EA /* Supporting Files */,
-				83F558F61B87291E00A761EA /* RHHttpTest.h */,
-				83F558F71B87291E00A761EA /* RHHttpTest.m */,
 			);
 			path = RHHttpDemo;
 			sourceTree = "<group>";
@@ -327,7 +323,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83F558F81B87291E00A761EA /* RHHttpTest.m in Sources */,
 				8302E0C81B8EEB9F00F86F4D /* RHHttpPostOperation.m in Sources */,
 				8302E0C61B8EEB9F00F86F4D /* RHHttpMultiPostOperation.m in Sources */,
 				8302E0C31B8EEB9F00F86F4D /* RHHttpCacheOperation.m in Sources */,
@@ -337,6 +332,7 @@
 				83F558BB1B87288000A761EA /* main.m in Sources */,
 				8302E0C51B8EEB9F00F86F4D /* RHHttpGetOperation.m in Sources */,
 				8302E0C91B8EEB9F00F86F4D /* RHHttpUploadOperation.m in Sources */,
+				837D36D61BABE89D00B6EB82 /* RHHttpLogKit.m in Sources */,
 				8302E0C41B8EEB9F00F86F4D /* RHHttpDownloadOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

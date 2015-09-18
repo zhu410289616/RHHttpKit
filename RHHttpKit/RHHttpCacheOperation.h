@@ -8,7 +8,7 @@
 
 #import "RHHttpOperation.h"
 
-typedef void(^RHHttpCacheBlock)(id<RHHttpProtocol> request, id response);
+typedef void(^RHHttpCacheBlock)(id request, id response);
 
 @interface RHHttpCacheOperation : RHHttpOperation
 
@@ -20,5 +20,11 @@ typedef void(^RHHttpCacheBlock)(id<RHHttpProtocol> request, id response);
 
 /* 优先读取缓存, 回调block */
 @property (nonatomic, copy) RHHttpCacheBlock cacheBlock;
+
+- (NSString *)keyForCache;
+- (void)requestCache:(id)request response:(id)response;
+
+- (void)willExecute;
+- (void)didExecute;
 
 @end
