@@ -16,7 +16,7 @@
     NSString *_cachePath;
     unsigned long long _offset;
     NSString *_range;
-    AFHTTPRequestOperation *_operation;
+    NSURLSessionDownloadTask *_downloadTask;
 }
 
 @end
@@ -58,7 +58,7 @@
 
 - (void)requestDownload:(id)request progress:(NSDictionary *)progress
 {
-    RHHttpLog(@"[%@] requestDownload: %@", [self class], progress);
+    RHHttpLogPrint(@"[%@] requestDownload: %@", [self class], progress);
     if (_progressBlock) {
         _progressBlock(request, progress);
     }
@@ -66,51 +66,52 @@
 
 - (void)doHttpDownloadWithUrl:(NSString *)URLString parameters:(NSDictionary *)parameters
 {
-    RHHttpLog(@"[%@] http url: %@, params: %@", [self class], URLString, parameters);
+    RHHttpLogPrint(@"[%@] http url: %@, params: %@", [self class], URLString, parameters);
     
     NSURL *url = [NSURL URLWithString:URLString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setValue:_range forHTTPHeaderField:@"Range"];
     
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    
     @weakify(self);
-    _operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    _operation.outputStream = [[NSOutputStream alloc] initToFileAtPath:_cachePath append:YES];
-    [_operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
-        
+    _downloadTask = [manager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
         @strongify(self);
-        [[EGOCache globalCache] setString:[NSString stringWithFormat:@"%lld", totalBytesRead] forKey:[self keyForFileSize]];
+        [[EGOCache globalCache] setString:[NSString stringWithFormat:@"%lld", downloadProgress.totalUnitCount] forKey:[self keyForFileSize]];
         
         NSDictionary *progress = @{
-                                   @"bytesRead":@(bytesRead),
-                                   @"totalBytesRead":@(totalBytesRead),
-                                   @"totalBytesExpectedToRead":@(totalBytesExpectedToRead)
+                                   @"bytesRead":@(downloadProgress.completedUnitCount),
+                                   @"totalBytesRead":@(downloadProgress.totalUnitCount)
                                    };
         [self requestDownload:self progress:progress];
-    }];
-    [_operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+    } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+        return [NSURL fileURLWithPath:_cachePath];
+    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
         @strongify(self);
-        NSDictionary *result = @{ @"FilePath":[self pathForCache] };
+        if (error) {
+            [self requestFailure:self error:error];
+            return;
+        }//
+        NSDictionary *result = @{ @"FilePath":filePath, @"CachePath":[self pathForCache] };
         [self requestSuccess:self response:result];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        @strongify(self);
-        [self requestFailure:self error:error];
     }];
-    [_operation start];
+    [_downloadTask resume];
 }
 
 - (void)pause
 {
-    [_operation pause];
+    [_downloadTask suspend];
 }
 
 - (void)resume
 {
-    [_operation resume];
+    [_downloadTask resume];
 }
 
 - (void)stop
 {
-    [_operation cancel];
+    [_downloadTask cancel];
 }
 
 @end

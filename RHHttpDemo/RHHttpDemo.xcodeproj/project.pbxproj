@@ -15,7 +15,7 @@
 		8302E0C71B8EEB9F00F86F4D /* RHHttpOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8302E0BD1B8EEB9F00F86F4D /* RHHttpOperation.m */; };
 		8302E0C81B8EEB9F00F86F4D /* RHHttpPostOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8302E0BF1B8EEB9F00F86F4D /* RHHttpPostOperation.m */; };
 		8302E0C91B8EEB9F00F86F4D /* RHHttpUploadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8302E0C21B8EEB9F00F86F4D /* RHHttpUploadOperation.m */; };
-		837D36D61BABE89D00B6EB82 /* RHHttpLogKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 837D36D51BABE89D00B6EB82 /* RHHttpLogKit.m */; settings = {ASSET_TAGS = (); }; };
+		837D36D61BABE89D00B6EB82 /* RHHttpLogKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 837D36D51BABE89D00B6EB82 /* RHHttpLogKit.m */; };
 		83F558BB1B87288000A761EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F558BA1B87288000A761EA /* main.m */; };
 		83F558BE1B87288000A761EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F558BD1B87288000A761EA /* AppDelegate.m */; };
 		83F558C11B87288000A761EA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F558C01B87288000A761EA /* ViewController.m */; };
@@ -201,6 +201,7 @@
 				83F558B21B87288000A761EA /* Frameworks */,
 				83F558B31B87288000A761EA /* Resources */,
 				D9A2EA40DBA18AF2EA45ECD2 /* Copy Pods Resources */,
+				59AFF43C54164FBCFDBE3850 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -286,6 +287,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		59AFF43C54164FBCFDBE3850 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C0E651806C435C7DCBC3D3F1 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

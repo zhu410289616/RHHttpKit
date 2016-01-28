@@ -25,9 +25,9 @@
 
 - (void)doHttpMultiPostWithUrl:(NSString *)URLString parameters:(NSDictionary *)parameters multipartFormDataParams:(NSDictionary *)multipartFormDataParams
 {
-    RHHttpLog(@"[%@] http url: %@, params: %@, multipartFormDataParams: %@", [self class], URLString, parameters, multipartFormDataParams);
+    RHHttpLogPrint(@"[%@] http url: %@, params: %@, multipartFormDataParams: %@", [self class], URLString, parameters, multipartFormDataParams);
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     if (self.requestSerializer) {
         manager.requestSerializer = self.requestSerializer;
@@ -36,7 +36,7 @@
         manager.responseSerializer = self.responseSerializer;
     }//if
     
-    [manager POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [manager POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         NSArray *multipartParamKeys = [multipartFormDataParams allKeys];
         for (id key in multipartParamKeys) {
             id value = [multipartFormDataParams objectForKey:key];
@@ -44,9 +44,11 @@
                 [formData appendPartWithFileURL:value name:key error:nil];
             }
         }
-    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        RHHttpLogPrint(@"uploadProgress...");
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [self requestSuccess:self response:responseObject];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self requestFailure:self error:error];
     }];
 }

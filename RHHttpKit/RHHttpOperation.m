@@ -22,7 +22,7 @@
 
 - (void)dealloc
 {
-    RHHttpLog(@"[%@] dealloc...", [self class]);
+    RHHttpLogPrint(@"[%@] dealloc...", [self class]);
 }
 
 - (NSString *)httpURL
@@ -45,9 +45,9 @@
 
 - (void)doHttpGetWithUrl:(NSString *)URLString parameters:(NSDictionary *)parameters
 {
-    RHHttpLog(@"[%@] http url: %@, params: %@", [self class], URLString, parameters);
+    RHHttpLogPrint(@"[%@] http url: %@, params: %@", [self class], URLString, parameters);
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     if (_requestSerializer) {
         manager.requestSerializer = _requestSerializer;
@@ -56,16 +56,16 @@
         manager.responseSerializer = _responseSerializer;
     }//if
     
-    [manager GET:URLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:URLString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [self requestSuccess:self response:responseObject];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self requestFailure:self error:error];
     }];
 }
 
 - (void)requestSuccess:(id)request response:(id)response
 {
-    RHHttpLog(@"[%@] requestSuccess: %@", [self class], response);
+    RHHttpLogPrint(@"[%@] requestSuccess: %@", [self class], response);
     if (_successBlock) {
         _successBlock(request, response);
     }
@@ -73,7 +73,7 @@
 
 - (void)requestFailure:(id)request error:(NSError *)error
 {
-    RHHttpLog(@"[%@] requestFailure: %@", [self class], error);
+    RHHttpLogPrint(@"[%@] requestFailure: %@", [self class], error);
     if (_failureBlock) {
         _failureBlock(request, error);
     }

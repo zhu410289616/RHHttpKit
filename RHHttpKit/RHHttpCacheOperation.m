@@ -67,7 +67,7 @@
 
 - (void)requestCache:(id)request response:(id)response
 {
-    RHHttpLog(@"[%@] requestCache: %@", [self class], response);
+    RHHttpLogPrint(@"[%@] requestCache: %@", [self class], response);
     if (_cacheBlock) {
         _cacheBlock(request, response);
     }

@@ -19,9 +19,9 @@
 
 - (void)doHttpPostWithUrl:(NSString *)URLString parameters:(NSDictionary *)parameters
 {
-    RHHttpLog(@"[%@] http url: %@, params: %@", [self class], URLString, parameters);
+    RHHttpLogPrint(@"[%@] http url: %@, params: %@", [self class], URLString, parameters);
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     if (self.requestSerializer) {
         manager.requestSerializer = self.requestSerializer;
@@ -29,10 +29,9 @@
     if (self.responseSerializer) {
         manager.responseSerializer = self.responseSerializer;
     }//if
-    
-    [manager POST:URLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:URLString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [self requestSuccess:self response:responseObject];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self requestFailure:self error:error];
     }];
 }
