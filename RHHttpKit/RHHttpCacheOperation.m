@@ -40,6 +40,11 @@
     }
 }
 
+- (void)setCacheBlock:(void(^)(id request, id response))cacheBlock
+{
+    _cacheBlock = cacheBlock;
+}
+
 - (NSString *)keyForCache
 {
     if (_cacheKey.length > 0) {

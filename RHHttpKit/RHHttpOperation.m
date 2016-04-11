@@ -36,6 +36,16 @@
     return _parameters;
 }
 
+- (void)setSuccessBlock:(void(^)(id request, id response))successBlock
+{
+    _successBlock = successBlock;
+}
+
+- (void)setFailureBlock:(void(^)(id request, NSError *error))failureBlock
+{
+    _failureBlock = failureBlock;
+}
+
 - (void)execute
 {
     NSString *url = [self httpURL];

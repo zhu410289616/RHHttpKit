@@ -15,8 +15,8 @@ typedef void(^RHHttpFailureBlock)(id request, NSError *error);
 
 @interface RHHttpOperation : NSOperation
 
-@property (nonatomic, copy) RHHttpSuccessBlock successBlock;
-@property (nonatomic, copy) RHHttpFailureBlock failureBlock;
+@property (nonatomic, copy, readonly) RHHttpSuccessBlock successBlock;
+@property (nonatomic, copy, readonly) RHHttpFailureBlock failureBlock;
 
 @property (nonatomic, copy) NSString *urlString;
 @property (nonatomic, strong) NSDictionary *parameters;
@@ -26,6 +26,9 @@ typedef void(^RHHttpFailureBlock)(id request, NSError *error);
 
 - (NSString *)httpURL;
 - (NSDictionary *)httpParameters;
+
+- (void)setSuccessBlock:(void(^)(id request, id response))successBlock;
+- (void)setFailureBlock:(void(^)(id request, NSError *error))failureBlock;
 
 - (void)execute;
 

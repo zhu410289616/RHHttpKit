@@ -24,6 +24,9 @@
     //
     RHHttpGetOperation *get = [[RHHttpGetOperation alloc] init];
     get.urlString = @"http://mobile.ximalaya.com/mobile/others/ca/album/track/280961/true/1/30?device=iPhone";
+    [get setCacheBlock:^(id request, id response) {
+        RHHttpLog(@"setCacheBlock: %@", response);
+    }];
     [get setSuccessBlock:^(id request, id response) {
         NSString *result = response;
         RHHttpLog(@"setSuccessBlock: %@", result);

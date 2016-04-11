@@ -19,7 +19,9 @@ typedef void(^RHHttpCacheBlock)(id request, id response);
 @property (nonatomic, assign) NSTimeInterval cacheTimeout;
 
 /* 优先读取缓存, 回调block */
-@property (nonatomic, copy) RHHttpCacheBlock cacheBlock;
+@property (nonatomic, copy, readonly) RHHttpCacheBlock cacheBlock;
+
+- (void)setCacheBlock:(void(^)(id request, id response))cacheBlock;
 
 - (NSString *)keyForCache;
 - (void)requestCache:(id)request response:(id)response;
