@@ -7,7 +7,7 @@
 //
 
 #import "RHHttpCacheOperation.h"
-#import "NSString+MD5.h"
+#import "NSString+RHHttp.h"
 #import "EGOCache.h"
 
 @interface RHHttpCacheOperation ()

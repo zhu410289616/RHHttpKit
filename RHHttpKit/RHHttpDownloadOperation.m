@@ -7,7 +7,7 @@
 //
 
 #import "RHHttpDownloadOperation.h"
-#import "NSFileManager+Ext.h"
+#import "NSFileManager+RHHttp.h"
 #import "EXTScope.h"
 #import "EGOCache.h"
 

@@ -15,6 +15,8 @@
 		8302E0C71B8EEB9F00F86F4D /* RHHttpOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8302E0BD1B8EEB9F00F86F4D /* RHHttpOperation.m */; };
 		8302E0C81B8EEB9F00F86F4D /* RHHttpPostOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8302E0BF1B8EEB9F00F86F4D /* RHHttpPostOperation.m */; };
 		8302E0C91B8EEB9F00F86F4D /* RHHttpUploadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8302E0C21B8EEB9F00F86F4D /* RHHttpUploadOperation.m */; };
+		8336FEAB1CBB541E0032DC7C /* NSString+RHHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 8336FEAA1CBB541E0032DC7C /* NSString+RHHttp.m */; };
+		8336FEAE1CBB54AF0032DC7C /* NSFileManager+RHHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 8336FEAD1CBB54AF0032DC7C /* NSFileManager+RHHttp.m */; };
 		837D36D61BABE89D00B6EB82 /* RHHttpLogKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 837D36D51BABE89D00B6EB82 /* RHHttpLogKit.m */; };
 		83F558BB1B87288000A761EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F558BA1B87288000A761EA /* main.m */; };
 		83F558BE1B87288000A761EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F558BD1B87288000A761EA /* AppDelegate.m */; };
@@ -50,6 +52,10 @@
 		8302E0BF1B8EEB9F00F86F4D /* RHHttpPostOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RHHttpPostOperation.m; sourceTree = "<group>"; };
 		8302E0C11B8EEB9F00F86F4D /* RHHttpUploadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RHHttpUploadOperation.h; sourceTree = "<group>"; };
 		8302E0C21B8EEB9F00F86F4D /* RHHttpUploadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RHHttpUploadOperation.m; sourceTree = "<group>"; };
+		8336FEA91CBB541E0032DC7C /* NSString+RHHttp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RHHttp.h"; sourceTree = "<group>"; };
+		8336FEAA1CBB541E0032DC7C /* NSString+RHHttp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RHHttp.m"; sourceTree = "<group>"; };
+		8336FEAC1CBB54AF0032DC7C /* NSFileManager+RHHttp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+RHHttp.h"; sourceTree = "<group>"; };
+		8336FEAD1CBB54AF0032DC7C /* NSFileManager+RHHttp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+RHHttp.m"; sourceTree = "<group>"; };
 		837D36D41BABE89D00B6EB82 /* RHHttpLogKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RHHttpLogKit.h; sourceTree = "<group>"; };
 		837D36D51BABE89D00B6EB82 /* RHHttpLogKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RHHttpLogKit.m; sourceTree = "<group>"; };
 		83F558B51B87288000A761EA /* RHHttpDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RHHttpDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +120,10 @@
 				8302E0C21B8EEB9F00F86F4D /* RHHttpUploadOperation.m */,
 				837D36D41BABE89D00B6EB82 /* RHHttpLogKit.h */,
 				837D36D51BABE89D00B6EB82 /* RHHttpLogKit.m */,
+				8336FEA91CBB541E0032DC7C /* NSString+RHHttp.h */,
+				8336FEAA1CBB541E0032DC7C /* NSString+RHHttp.m */,
+				8336FEAC1CBB54AF0032DC7C /* NSFileManager+RHHttp.h */,
+				8336FEAD1CBB54AF0032DC7C /* NSFileManager+RHHttp.m */,
 			);
 			name = RHHttpKit;
 			path = ../../RHHttpKit;
@@ -341,6 +351,7 @@
 			files = (
 				8302E0C81B8EEB9F00F86F4D /* RHHttpPostOperation.m in Sources */,
 				8302E0C61B8EEB9F00F86F4D /* RHHttpMultiPostOperation.m in Sources */,
+				8336FEAE1CBB54AF0032DC7C /* NSFileManager+RHHttp.m in Sources */,
 				8302E0C31B8EEB9F00F86F4D /* RHHttpCacheOperation.m in Sources */,
 				83F558C11B87288000A761EA /* ViewController.m in Sources */,
 				8302E0C71B8EEB9F00F86F4D /* RHHttpOperation.m in Sources */,
@@ -348,6 +359,7 @@
 				83F558BB1B87288000A761EA /* main.m in Sources */,
 				8302E0C51B8EEB9F00F86F4D /* RHHttpGetOperation.m in Sources */,
 				8302E0C91B8EEB9F00F86F4D /* RHHttpUploadOperation.m in Sources */,
+				8336FEAB1CBB541E0032DC7C /* NSString+RHHttp.m in Sources */,
 				837D36D61BABE89D00B6EB82 /* RHHttpLogKit.m in Sources */,
 				8302E0C41B8EEB9F00F86F4D /* RHHttpDownloadOperation.m in Sources */,
 			);
